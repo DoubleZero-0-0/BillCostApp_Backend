@@ -37,6 +37,7 @@ jobs:
             username: ${{ secrets.AWS_USERNAME }}
             key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
             script: |
+              sudo -i
               docker pull atulchan/billcost_app_backend:latest
               docker stop billcost_app_backend
               docker rm billcost_app_backend
