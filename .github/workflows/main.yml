@@ -37,9 +37,13 @@ jobs:
             username: ${{ secrets.AWS_USERNAME }}
             key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
             script: |
-              docker pull atulchan/billcost_app_backend:${{ github.sha }}
               docker stop billcost_app_backend
               docker rm billcost_app_backend
+              previous_image_id=$(docker images --format "{{.ID}}" atulchan/billcost_app_backend)
+              if [ -n "$previous_image_id" ]; then
+              docker rmi "$previous_image_id"
+              fi
+              docker pull atulchan/billcost_app_backend:${{ github.sha }}
               docker run -d -p 9090:8080 --name billcost_app_backend atulchan/billcost_app_backend:${{ github.sha }}       
               
 
