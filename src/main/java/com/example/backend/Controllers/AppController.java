@@ -12,7 +12,7 @@ public class AppController {
     @GetMapping("/login")
     public String testing()
     {
-        return "This For testing";
+        return "Hi i am a Bot, Hello Guys";
     }
 
 }
