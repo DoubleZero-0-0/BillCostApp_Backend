@@ -28,7 +28,7 @@ jobs:
             context: .
             push: true
             tags: |
-              atulchan/billcost_app_backend:latest
+              atulchan/billcost_app_backend:${{ github.sha }}
 
         - name: SSH into AWS Instance and Update Docker Container
           uses: appleboy/ssh-action@master
@@ -37,9 +37,9 @@ jobs:
             username: ${{ secrets.AWS_USERNAME }}
             key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
             script: |
-              docker pull atulchan/billcost_app_backend:latest
+              docker pull atulchan/billcost_app_backend:${{ github.sha }}
               docker stop billcost_app_backend
               docker rm billcost_app_backend
-              docker run -d -p 9090:8080 --name billcost_app_backend atulchan/billcost_app_backend:latest       
+              docker run -d -p 9090:8080 --name billcost_app_backend atulchan/billcost_app_backend:${{ github.sha }}       
               
 
