@@ -29,5 +29,5 @@ jobs:
             push: true
             tags: |
               atulchan/billcost_app_backend:latest
-              atulchan/billcost_app_backend:${{ github.sha }}
+              
 
