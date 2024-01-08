@@ -13,4 +13,7 @@ public interface UsersService extends IService<UsersDO> {
     Boolean checkEmail(String userEmail);
 
     void insert_user(UsersDO user);
+
+
+    UsersDO passwordCheck(String userEmail, String md5Password);
 }

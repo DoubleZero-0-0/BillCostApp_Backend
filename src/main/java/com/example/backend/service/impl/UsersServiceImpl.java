@@ -51,6 +51,15 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, UsersDO>
 
     }
 
+    @Override
+    public UsersDO passwordCheck(String userEmail, String md5Password) {
+        UsersDO user = usersMapper.selectOne(new QueryWrapper<UsersDO>().eq("user_email",userEmail)
+                .eq("user_password",md5Password));
+
+        return user;
+    }
+
+
     private Integer generateRandomToken() {
         Random random = new Random();
         int token = 1000 + random.nextInt(9000);

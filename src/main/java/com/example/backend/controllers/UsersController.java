@@ -35,4 +35,36 @@ public class UsersController {
         }
     }
 
+
+    @PostMapping("/login")
+    public Result loginUser(@RequestBody UsersDO user) {
+
+        //check email,this email have in the database or not
+        Boolean emailFound = usersService.checkEmail(user.getUserEmail());
+
+        if (emailFound) {
+            //Check the email and password
+            String MD5_PASSWORD = MD5Utils.string2MD5(user.getUserPassword());
+            UsersDO getUser = usersService.passwordCheck(user.getUserEmail(),MD5_PASSWORD);
+
+            if (getUser != null) {
+                //Check Email Are Verified Or Not
+                if (getUser.getEmailVerify() != 0)
+                {
+                    return  Result.success();
+                } else {
+                    return Result.error("You Email Are Not Verify,Please Verify First");
+                }
+
+            } else {
+                return Result.error("Credential Are not Match");
+            }
+
+        } else {
+            return Result.error("This Email Not Found");
+        }
+
+    }
+
+
 }
