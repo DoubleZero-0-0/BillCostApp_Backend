@@ -1,4 +1,4 @@
-package com.example.backend.Util;
+package com.example.backend.util;
 
 
 import com.auth0.jwt.JWT;
