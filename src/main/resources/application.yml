@@ -15,8 +15,13 @@ spring:
           auth: true
           starttls:
             enable: true
+#  security:
+#    user:
+#      name: atulchan
+#      password: 12345
 
 
+#  ojlu mfcg xvps ymel
 
 
 
@@ -24,7 +29,10 @@ spring:
 
 logging:
   level:
-    com.baomidou.mybatisplus: debug
+    com.baomidou.mybatisplus: DEBUG
+    org.springframework.security: DEBUG
+
+
 
 
 

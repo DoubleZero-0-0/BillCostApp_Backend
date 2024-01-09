@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public  Result handleExecption(Exception e)
+    public  ApiResponse handleExecption(Exception e)
     {
         e.printStackTrace();
-        return Result.error(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "操作失败" );
+        return new ApiResponse(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "操作失败", "操作失败",null );
     }
 
 
