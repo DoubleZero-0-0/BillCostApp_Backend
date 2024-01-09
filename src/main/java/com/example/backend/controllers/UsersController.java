@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 @Api(tags = "User Operations", description = "APIs related to user management")
@@ -61,7 +64,10 @@ public class UsersController {
                 {
                     return  ResponseEntity.ok().body(new ApiResponse("success","Login Successfully",null));
                 } else {
-                    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ApiResponse("error","email not verified",null));
+                    Map<String,Object> usermap = new HashMap<>();
+                    usermap.put("Email",getUser.getUserEmail());
+                    usermap.put("Name",getUser.getUserName());
+                    return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ApiResponse("406","email not verified",usermap));
                 }
 
             } else {
