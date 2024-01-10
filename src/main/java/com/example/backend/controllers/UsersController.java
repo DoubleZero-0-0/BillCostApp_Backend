@@ -4,6 +4,7 @@ package com.example.backend.controllers;
 import com.example.backend.domain.UsersDO;
 import com.example.backend.service.UsersService;
 import com.example.backend.util.ApiResponse;
+import com.example.backend.util.JwtUtil;
 import com.example.backend.util.MD5Utils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -59,14 +60,23 @@ public class UsersController {
             UsersDO getUser = usersService.passwordCheck(user.getUserEmail(),MD5_PASSWORD);
 
             if (getUser != null) {
+
+                //Generate the token
+                Map<String,Object> claims = new HashMap<>();
+                claims.put("id",getUser.getUserId());
+                claims.put("username",getUser.getUserName());
+                String token = JwtUtil.genToken(claims);
+                System.out.println(token);
+
                 //Check Email Are Verified Or Not
                 if (getUser.getEmailVerify() != 0)
                 {
-                    return  ResponseEntity.ok().body(new ApiResponse("success","Login Successfully",null));
+                    return  ResponseEntity.ok().body(new ApiResponse("success","Login Successfully",token));
                 } else {
                     Map<String,Object> usermap = new HashMap<>();
                     usermap.put("Email",getUser.getUserEmail());
                     usermap.put("Name",getUser.getUserName());
+                    usermap.put("token",token);
                     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ApiResponse("406","email not verified",usermap));
                 }
 

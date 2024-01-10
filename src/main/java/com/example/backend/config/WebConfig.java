@@ -20,7 +20,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/api/login",
                         "/api/register",
-                        "/api/emailVerified",
                         "/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**", "/v2/api-docs/**"
                 )
                 .order(Ordered.HIGHEST_PRECEDENCE);
