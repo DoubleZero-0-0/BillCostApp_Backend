@@ -1,14 +1,38 @@
 spring:
   datasource:
-    url: jdbc:mysql://sab.cfaocwwyee44.us-east-1.rds.amazonaws.com/messaging_app
+    url: jdbc:mysql://sab.cfaocwwyee44.us-east-1.rds.amazonaws.com/BillCost_App
     username: atulchan
     password: 19031105
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: chondro.akash13@gmail.com
+    password: ojlumfcgxvpsymel
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+#  security:
+#    user:
+#      name: atulchan
+#      password: 12345
+
+
+#  ojlu mfcg xvps ymel
+
+
+
 
 
 logging:
   level:
-    com.baomidou.mybatisplus: debug
+    com.baomidou.mybatisplus: DEBUG
+    org.springframework.security: DEBUG
+
+
 
 
 

@@ -36,6 +36,14 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+<!--		&lt;!&ndash; Spring Boot Starter Security &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--		</dependency>-->
+
+
+
 		<!--		//Lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -66,25 +74,21 @@
 		</dependency>
 
 
+<!--		EmailSender-->
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<version>9.4.0.jre11</version> <!-- Use the latest version available -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 
 
-		<!-- Swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.7.0</version>
-		</dependency>
-
+		<!--springfox dependencies for api documentations in swagger -->
 		<dependency>
 			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.7.0</version>
+			<artifactId>springfox-boot-starter</artifactId>
+			<version>3.0.0</version>
 		</dependency>
+
+
 
 
 

@@ -1,8 +1,8 @@
 package com.example.backend.Interceptor;
 
 
-import com.example.backend.Util.JwtUtil;
-import com.example.backend.Util.ThreadLocalUtil;
+import com.example.backend.util.JwtUtil;
+import com.example.backend.util.ThreadLocalUtil;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -28,8 +28,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
             return true;
-
-
 
 
         }catch (Exception e)
