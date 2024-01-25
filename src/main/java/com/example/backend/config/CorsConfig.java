@@ -16,6 +16,8 @@ public class CorsConfig  {
 
         // Allow all origins, you may want to configure it to a specific origin instead
         config.addAllowedOrigin("http://localhost:5173/");
+        config.addAllowedOrigin("http://34.207.101.167:5173/");
+
 
         // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
         config.addAllowedMethod("*");
