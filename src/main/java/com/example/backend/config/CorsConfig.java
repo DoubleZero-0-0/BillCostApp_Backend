@@ -19,6 +19,7 @@ public class CorsConfig  {
         config.addAllowedOrigin("http://34.207.101.167:5173/");
         config.addAllowedOrigin("https://api.atulchandradash.fun/");
         config.addAllowedOrigin("https://billcost.atulchandradash.fun");
+        config.addAllowedOrigin("https://atulchandradash.fun");
 
 
         // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
