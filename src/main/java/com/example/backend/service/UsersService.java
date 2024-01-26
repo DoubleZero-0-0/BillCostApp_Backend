@@ -18,4 +18,6 @@ public interface UsersService extends IService<UsersDO> {
     UsersDO passwordCheck(String userEmail, String md5Password);
 
     Boolean emailVerified(String userEmail, Integer verifyToken);
+
+    UsersDO userInfo(Integer userid);
 }

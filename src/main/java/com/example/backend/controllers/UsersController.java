@@ -6,15 +6,13 @@ import com.example.backend.service.UsersService;
 import com.example.backend.util.ApiResponse;
 import com.example.backend.util.JwtUtil;
 import com.example.backend.util.MD5Utils;
+import com.example.backend.util.ThreadLocalUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -108,6 +106,25 @@ public class UsersController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ApiResponse("error","email not found",null));
         }
+    }
+
+    @ApiOperation( value = "User Information's",notes = "It will get to the user information's")
+    @GetMapping("/userInfo")
+    public ResponseEntity<Object> userInfo() {
+        //get the userid
+       Map<String,Object> user = ThreadLocalUtil.get();
+        Integer userid = (Integer) user.get("id");
+        System.out.println(userid);
+
+        UsersDO userInfo = usersService.userInfo(userid);
+
+        if (userInfo != null)
+        {
+            return ResponseEntity.ok().body(new ApiResponse("success","got the userinfo",userInfo));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Error","user info not found ", null));
+        }
+
     }
 
 

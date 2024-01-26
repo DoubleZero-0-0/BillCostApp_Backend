@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.ExpenseCostMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.backend.domain.ExpenseCost">
+            <id property="expenseCostId" column="Expense_Cost_ID" jdbcType="INTEGER"/>
+            <result property="categoriesId" column="Categories_ID" jdbcType="INTEGER"/>
+            <result property="userId" column="User_ID" jdbcType="INTEGER"/>
+            <result property="expenseCost" column="Expense_Cost" jdbcType="DECIMAL"/>
+            <result property="dateTime" column="Date_Time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        Expense_Cost_ID,Categories_ID,User_ID,
+        Expense_Cost,Date_Time
+    </sql>
+
+    <select id="TodayCost" resultType="Double">
+        SELECT SUM(Expense_Cost) AS TodayCost
+        FROM expense_cost
+        WHERE User_ID = #{userid} AND DATE(Date_Time) = #{bdDay}
+    </select>
+
+    <select id="weeklyCost" resultType="Double">
+        SELECT SUM(Expense_Cost) AS total_cost
+        FROM expense_cost
+        WHERE User_ID = #{userid}  AND YEARWEEK(CONVERT_TZ(Date_Time, 'UTC', 'Asia/Dhaka')) = YEARWEEK(CONVERT_TZ(NOW(), 'UTC', 'Asia/Dhaka'));
+    </select>
+
+
+</mapper>
+
+

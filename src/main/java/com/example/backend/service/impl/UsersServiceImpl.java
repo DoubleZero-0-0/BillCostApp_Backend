@@ -77,6 +77,11 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, UsersDO>
 
     }
 
+    @Override
+    public UsersDO userInfo(Integer userid) {
+        return  usersMapper.selectById(userid) ;
+    }
+
 
     private Integer generateRandomToken() {
         Random random = new Random();
